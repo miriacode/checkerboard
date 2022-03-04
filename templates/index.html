@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkerboard</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <header>
+        <h1 style="--color_one: {{ color_one }}; --color_two: {{ color_two }}">*** Checkerboard ***</h1>
+    </header>
+    <main style="--columns: {{ columns }}">
+        {% for x in range(0, rows): %}
+            {% if x % 2 != 0: %}
+                {% for y in range(0, columns): %}
+                    {% if y % 2 != 0: %}
+                        <div class="odd_div" style="--color_one: {{ color_one }}"></div>
+                    {% endif %}
+                    {% if y % 2 == 0: %}
+                        <div class="even_div" style="--color_two: {{ color_two }}"></div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if x % 2 == 0: %}
+                {% for y in range(0, columns): %}
+                    {% if y % 2 != 0: %}
+                        <div class="even_div" style="--color_two: {{ color_two }}"></div>
+                    {% endif %}
+                    {% if y % 2 == 0: %}
+                        <div class="odd_div" style="--color_one: {{ color_one }}"></div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+    </main>
+</body>
+</html>
